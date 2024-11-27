@@ -78,10 +78,10 @@
   <xsl:template name="get.structural.name">
     <xsl:param name="level"/>
     <xsl:choose>
-      <xsl:when test="$level = 0">book</xsl:when>
-      <xsl:when test="$level = 1">chapter</xsl:when>
-      <xsl:when test="$level >= 2">section</xsl:when>
+      <xsl:when test="$level = 0">article</xsl:when>
+      <xsl:when test="$level >= 1">section</xsl:when>
       <!--
+      <xsl:when test="$level = 2">section</xsl:when>
       <xsl:when test="$level = 3">sect2</xsl:when>
       <xsl:when test="$level = 4">sect3</xsl:when>
       <xsl:when test="$level = 5">sect4</xsl:when>
@@ -235,12 +235,7 @@
       <xsl:call-template name="get.target4section.id"/>
     </xsl:variable>
 
-    <book xml:lang="{$rootlang}" version="{$rootversion}">
-      <xsl:if test="$idattr != ''">
-        <xsl:attribute name="xml:id">
-          <xsl:value-of select="$idattr"/>
-        </xsl:attribute>
-      </xsl:if>
+    <article xml:lang="{$rootlang}" version="{$rootversion}"  xml:id="index">
       <xsl:call-template name="include.xmlbase"/>
       <xsl:apply-templates select="title"/>
       <info>
@@ -257,7 +252,7 @@
         </xsl:if>
       </info>
       <xsl:apply-templates select="*[not(self::title)]"/>
-    </book>
+    </article>
   </xsl:template>
 
   <xsl:template match="/document[@role='big']/section/document/section">
@@ -265,7 +260,7 @@
       <xsl:call-template name="get.target4section.id"/>
     </xsl:variable>
 
-    <chapter>
+    <section>
       <xsl:if test="$idattr != ''">
         <xsl:attribute name="xml:id">
           <xsl:value-of select="$idattr"/>
@@ -273,7 +268,7 @@
       </xsl:if>
      <xsl:call-template name="include.xmlbase"/>
       <xsl:apply-templates/>
-    </chapter>
+    </section>
   </xsl:template>
 
   <xsl:template match="section[@names = 'abstract']" mode="info">
