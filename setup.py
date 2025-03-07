@@ -77,8 +77,8 @@ setupdict = dict(
    },
 
    # For testing purposes with "setup.py test"
-   setup_requires=['pytest-runner'],
-   tests_require=['pytest', 'pytest-cov'],
+#   setup_requires=['pytest-runner'],
+#   tests_require=['pytest', 'pytest-cov'],
    #
    entry_points={
         'console_scripts': [
